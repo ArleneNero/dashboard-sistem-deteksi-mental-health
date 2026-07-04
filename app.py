@@ -21,7 +21,7 @@ st.set_page_config(
     page_title="Sistem Deteksi Dini Kesehatan Mental Generasi Z di Platform X",
     page_icon="🧠",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 T.inject_css()
@@ -285,49 +285,7 @@ if "selected_day" not in st.session_state and daily is not None:
     st.session_state.selected_day = daily["day"].tolist()[-1]
 
 
-# ---------------- SIDEBAR ----------------
-with st.sidebar:
-    st.markdown('<div class="masthead" style="margin-bottom:0.8rem;">'
-                '<div class="k">Berkas No. MH-01</div>'
-                '<div style="font-family:' + T.FONT_DISPLAY + ';font-size:1.4rem;'
-                'font-weight:900;line-height:1.05;">Monitoring<br>Kesehatan Mental</div></div>',
-                unsafe_allow_html=True)
-    st.markdown('<div style="height:0.8rem;"></div>', unsafe_allow_html=True)
-    st.markdown('<div class="eyebrow">Status Sistem</div>', unsafe_allow_html=True)
-    
-    # Ambil status harian dinamis sesuai tanggal terpilih
-    selected_day = st.session_state.get("selected_day")
-    if selected_day and daily is not None:
-        day_row = daily[daily["day"] == selected_day]
-        if not day_row.empty:
-            row_data = day_row.iloc[0]
-            urgent_val = int(row_data.get("urgent", 0))
-            
-            if urgent_val >= 16:
-                status = "MERAH"
-            elif urgent_val >= 11:
-                status = "KUNING"
-            else:
-                status = "HIJAU"
-        else:
-            urgent_val = 0
-            status = "HIJAU"
-    else:
-        urgent_val = 0
-        status = "HIJAU"
-        
-    lamp = {"HIJAU": "🟢", "KUNING": "🟡", "MERAH": "🔴"}.get(status, "🟢")
-    st.markdown(f'<div style="font-family:{T.FONT_MONO};font-size:13px;line-height:1.8;color:{T.INK};">'
-                f'Tanggal Analisis: <b>{selected_day}</b><br>'
-                f'Lampu indikator: <b>{lamp} {status}</b><br>'
-                f'Jumlah kasus: <b>{urgent_val}</b><br>'
-                f'Ambang Rule Engine: <b>{g(summary, "score_threshold_rule", A["rule_threshold"])}</b></div>',
-                unsafe_allow_html=True)
-    st.caption("Alert Engine: Ambang tetap atas agregasi harian 'Pertolongan Segera'.")
-    st.markdown('<div style="height:0.8rem;"></div>', unsafe_allow_html=True)
-    st.markdown('<div class="eyebrow">Parameter Triase</div>', unsafe_allow_html=True)
-    EV_THR = st.slider("Ambang evidence_score", 0.0, 0.80, 0.45, 0.01)
-    st.caption("Ambang baku hasil tuning DEV: 0,45")
+
 
 # ---------------- MASTHEAD ----------------
 T.masthead("Sistem Deteksi Dini Kesehatan Mental Generasi Z di Platform X", "Decision Support System \u00b7 Pipeline \u2192 Dashboard")
@@ -609,7 +567,7 @@ with tabs[0]:
             xaxis=dict(title="Predicted Label", side="bottom"),
             yaxis=dict(title="Actual Label")
         )
-        st.plotly_chart(fig_cm, use_container_width=True)
+        st.plotly_chart(fig_cm, use_container_width=True, theme=None)
     with cl[1]:
         pc = g(test, "per_class", {})
         seg = pc.get("Pertolongan Segera", {})
@@ -794,7 +752,7 @@ with tabs[1]:
         yaxis_title="Jumlah Post"
     )
     with c1:
-        st.plotly_chart(fig_bar, use_container_width=True)
+        st.plotly_chart(fig_bar, use_container_width=True, theme=None)
         
     # 2. Pie Chart (Right)
     fig_pie = go.Figure(go.Pie(
@@ -813,7 +771,7 @@ with tabs[1]:
         showlegend=False
     )
     with c2:
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.plotly_chart(fig_pie, use_container_width=True, theme=None)
 
     st.markdown('<div class="kicker">🚨 Alert Engine & Tren Temporal Harian</div>', unsafe_allow_html=True)
     st.markdown('<p class="note">Agregasi harian post <b>Pertolongan Segera</b>. Alert Engine memakai AMBANG TETAP pada jumlah kasus \'Pertolongan Segera\' harian: hijau ≤10, kuning 11–15, merah ≥16. Pilih tanggal analisis di bawah untuk melihat rincian alert status dan postingan kritis.</p>', unsafe_allow_html=True)
@@ -900,7 +858,7 @@ with tabs[1]:
                               clickmode="event+select")
             
             # Tangkap event klik pada grafik
-            event_data = st.plotly_chart(fig, use_container_width=True, on_select="rerun", selection_mode="points")
+            event_data = st.plotly_chart(fig, use_container_width=True, theme=None, on_select="rerun", selection_mode="points")
             
             if event_data and "selection" in event_data and event_data["selection"]["points"]:
                 clicked_day = event_data["selection"]["points"][0]["x"]
@@ -1004,16 +962,19 @@ with tabs[2]:
                               annotations=[dict(text=f"{int(td['count'].sum())}<br>post",
                                                 x=0.5, y=0.5, font=dict(family=T.FONT_DISPLAY,
                                                 size=22, color=T.INK), showarrow=False)])
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True, theme=None)
         with gcols[1]:
             tb = td.sort_values("count", ascending=True)
+            max_val = tb["count"].max() if not tb.empty else 100
             fig = go.Figure(go.Bar(
                 x=tb["count"], y=tb["topic_name"], orientation="h",
                 marker_color=T.OXBLOOD, marker_line_color=T.PAPER, marker_line_width=1.5,
                 text=tb["count"], textposition="outside", textfont=dict(family=T.FONT_MONO, color=T.INK)))
             fig.update_layout(template="dossier", height=360, title="Jumlah Post per Klaster",
-                              xaxis_title="Jumlah Post", margin=dict(l=10, r=10, t=46, b=10))
-            st.plotly_chart(fig, use_container_width=True)
+                              xaxis=dict(title="Jumlah Post", range=[0, max_val * 1.15]),
+                              margin=dict(l=10, r=15, t=46, b=10))
+            st.plotly_chart(fig, use_container_width=True, theme=None)
+
 
     # Kartu tema dengan interpretasi
     st.markdown('<div class="kicker">Interpretasi Tema Utama</div>', unsafe_allow_html=True)
@@ -1049,7 +1010,7 @@ with tabs[2]:
         fig.update_layout(template="dossier", height=360, title="Trending Tema per Hari",
                           xaxis_title="Tanggal", yaxis_title="Jumlah Post",
                           legend=dict(orientation="h", y=-0.25))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
 # ================= TAB 4: JARINGAN DUKUNGAN =================
 with tabs[3]:
@@ -1222,7 +1183,7 @@ with tabs[3]:
             annotations=annotations,
             plot_bgcolor="rgba(245,245,245,0.4)"
         ))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
         
         st.caption(f"ForceAtlas2 (SNA): Total Aktor {len(df_nodes)} \u00b7 "
                    f"Total Relasi Jaringan {len(df_edges)} \u00b7 "

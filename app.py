@@ -285,8 +285,6 @@ if "selected_day" not in st.session_state and daily is not None:
     st.session_state.selected_day = daily["day"].tolist()[-1]
 
 
-
-
 # ---------------- MASTHEAD ----------------
 T.masthead("Sistem Deteksi Dini Kesehatan Mental Generasi Z di Platform X", "Decision Support System \u00b7 Pipeline \u2192 Dashboard")
 

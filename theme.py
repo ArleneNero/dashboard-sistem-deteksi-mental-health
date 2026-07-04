@@ -187,6 +187,8 @@ section[data-testid="stSidebar"] { background: @SURFACE@; border-right: 2px soli
     .step-flow { flex-direction: column; align-items: stretch; }
     .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
 }
+div[data-testid="stPlotlyChart"] { background-color: transparent !important; }
+iframe[title="streamlit.plotly_chart"] { background-color: transparent !important; }
 """
 
 

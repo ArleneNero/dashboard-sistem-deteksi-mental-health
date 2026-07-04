@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Masalah Keluarga",
+    "count": 151,
+    "desc": "Konflik & tekanan dari lingkungan keluarga — pemicu stres terbesar.",
+    "tags": [
+      "keluarga",
+      "ortu",
+      "rumah"
+    ],
+    "contoh": "ortu berantem terus tiap hari di rumah, pengen pergi aja..."
+  },
+  {
+    "name": "Tekanan Akademik",
+    "count": 77,
+    "desc": "Beban kuliah/sekolah: nilai, UTBK/SNBT, skripsi, tugas.",
+    "tags": [
+      "kuliah",
+      "utbk",
+      "nilai",
+      "tugas"
+    ],
+    "contoh": "tugas kuliah numpuk banget, dapet revisi terus dari dospem, capek rasanya pengen nyerah..."
+  },
+  {
+    "name": "Lingkungan/Sosial",
+    "count": 86,
+    "desc": "Tekanan pertemanan & lingkungan sosial sekitar.",
+    "tags": [
+      "teman",
+      "sosial",
+      "circle"
+    ],
+    "contoh": "ga punya temen cerita, kesepian banget hidup di perantauan..."
+  },
+  {
+    "name": "Percintaan",
+    "count": 57,
+    "desc": "Tekanan emosional akibat hubungan asmara, patah hati, atau pengkhianatan.",
+    "tags": [
+      "pacar",
+      "cinta",
+      "putus",
+      "dikhianati"
+    ],
+    "contoh": "diputusin pacar setelah 4 tahun bareng, rasanya dunia runtuh..."
+  },
+  {
+    "name": "Pekerjaan",
+    "count": 80,
+    "desc": "Tekanan di tempat kerja, beban tugas, lingkungan kantor toxic, atau burnout.",
+    "tags": [
+      "kerja",
+      "kantor",
+      "resign",
+      "bos",
+      "burnout"
+    ],
+    "contoh": "kerjaan numpuk di kantor, dimarahin bos terus, pengen resign tapi butuh uang..."
+  },
+  {
+    "name": "Pemerintah",
+    "count": 53,
+    "desc": "Kecemasan akibat situasi politik, kebijakan pemerintah, atau masa depan negara.",
+    "tags": [
+      "politik",
+      "negara",
+      "pemerintah",
+      "kebijakan"
+    ],
+    "contoh": "melihat berita politik bikin cemas dan stres sendiri..."
+  },
+  {
+    "name": "Finansial",
+    "count": 57,
+    "desc": "Kesulitan keuangan, tagihan pinjaman online, hutang, atau biaya hidup.",
+    "tags": [
+      "uang",
+      "pinjol",
+      "hutang",
+      "finansial",
+      "ekonomi"
+    ],
+    "contoh": "tagihan pinjol numpuk dan diteror terus, rasanya mau bundir aja..."
+  }
+]

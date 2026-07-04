@@ -1,0 +1,8 @@
+{
+  "zscore_terakhir": -0.1,
+  "status": "HIJAU",
+  "score_threshold": 0.45,
+  "keterangan": "normal",
+  "n_hari": 37,
+  "metode": "z-score harian atas agregasi Pertolongan Segera"
+}

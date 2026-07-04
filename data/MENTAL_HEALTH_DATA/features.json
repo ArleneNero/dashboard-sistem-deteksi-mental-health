@@ -1,0 +1,22 @@
+{
+  "crisis_score": {
+    "mean": 3.08,
+    "std": 1.82,
+    "min": 0,
+    "max": 11
+  },
+  "sentiment_score": {
+    "mean": -24.26,
+    "std": 16.47,
+    "min": -92,
+    "max": 12,
+    "ksi_pos": 2465,
+    "ksi_neg": 6607
+  },
+  "evidence_score": {
+    "mean": 0.243,
+    "std": 0.156,
+    "min": 0.0,
+    "max": 0.766
+  }
+}

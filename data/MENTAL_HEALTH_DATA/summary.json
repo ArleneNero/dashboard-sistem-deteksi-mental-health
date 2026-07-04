@@ -1,0 +1,15 @@
+{
+  "total_post_bersih": 1899,
+  "final_label": {
+    "Pertolongan Segera": 115,
+    "Curhat Ringan": 1737,
+    "Tidak Relevan": 47
+  },
+  "rule_label": {
+    "Pertolongan Segera": 403,
+    "Curhat Ringan": 1382,
+    "Tidak Relevan": 114
+  },
+  "score_threshold_rule": 0.4,
+  "confidence_terkalibrasi": false
+}

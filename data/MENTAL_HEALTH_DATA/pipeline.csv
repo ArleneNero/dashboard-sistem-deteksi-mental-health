@@ -1,0 +1,6 @@
+tahap,nama,nilai
+1,Crawling & Merge,3 file → 1.902 baris mentah
+2,Filter Bahasa & Spam,1.902 → 1.899 (buang 3)
+3,Root / Reply,850 root · 1.052 reply
+4,Embedding SBERT,MiniLM-L12 · dim 384
+5,Anchor Mental Health,1.707 / 1.899 post

@@ -1,0 +1,64 @@
+{
+  "gold_total": 500,
+  "gold_dist": {
+    "Curhat Ringan": 434,
+    "Pertolongan Segera": 56,
+    "Tidak Relevan": 10
+  },
+  "cohen_kappa": 0.816,
+  "agreement_n": 477,
+  "agreement_pct": 95.4,
+  "safety_first_resolved": 23,
+  "cv": {
+    "mean_acc": 0.845,
+    "std_acc": 0.023,
+    "mean_macrof1": 0.614,
+    "std_macrof1": 0.074,
+    "oof_acc": 0.845,
+    "oof_macrof1": 0.640
+  },
+  "test": {
+    "dev_n": 400,
+    "test_n": 100,
+    "rule_threshold": 0.40,
+    "confusion_3x3": [
+      [5, 6, 0],
+      [7, 79, 1],
+      [0, 1, 1]
+    ],
+    "confusion_labels": ["Pertolongan Segera", "Curhat Ringan", "Tidak Relevan"],
+    "per_class": {
+      "Pertolongan Segera": {
+        "precision": 0.417,
+        "recall": 0.455,
+        "f1": 0.435,
+        "support": 11
+      },
+      "Curhat Ringan": {
+        "precision": 0.919,
+        "recall": 0.908,
+        "f1": 0.913,
+        "support": 87
+      },
+      "Tidak Relevan": {
+        "precision": 0.500,
+        "recall": 0.500,
+        "f1": 0.500,
+        "support": 2
+      }
+    },
+    "accuracy": 0.85,
+    "macro_f1": 0.616
+  },
+  "calibration": {
+    "method": "Isotonic 5-fold out-of-fold",
+    "brier": 0.087,
+    "pr_auc_evidence": 0.377
+  },
+  "baseline": {
+    "kamus_recall_urgent": 0.824,
+    "kamus_macrof1": 0.533,
+    "rule_recall_urgent": 0.824,
+    "rule_macrof1": 0.494
+  }
+}

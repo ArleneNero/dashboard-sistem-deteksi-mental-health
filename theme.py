@@ -71,17 +71,10 @@ html, body {
     background-color: transparent !important;
     color: @INK@ !important;
 }
-/* Plotly chart containers */
-div[data-testid="stPlotlyChart"],
-div[data-testid="stPlotlyChart"] > div,
-div[data-testid="stPlotlyChart"] > div > div,
-div[data-testid="stPlotlyChart"] iframe {
+/* Plotly chart containers — only outer wrapper, NOT internal SVG */
+div[data-testid="stPlotlyChart"] {
     background-color: @PAPER@ !important;
     color-scheme: light !important;
-}
-.js-plotly-plot, .plot-container, .svg-container,
-.main-svg, .js-plotly-plot .plotly {
-    background: @PAPER@ !important;
 }
 /* Selectbox, multiselect, input widgets */
 [data-testid="stMultiSelect"], [data-testid="stSelectbox"],

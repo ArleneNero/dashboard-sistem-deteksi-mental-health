@@ -973,7 +973,7 @@ with tabs[2]:
                 text=tb["count"], textposition="outside", textfont=dict(family=T.FONT_MONO, color=T.INK)))
             fig.update_layout(template="dossier", height=360, title="Jumlah Post per Klaster",
                               xaxis=dict(title="Jumlah Post", range=[0, max_val * 1.15]),
-                              margin=dict(l=10, r=15, t=46, b=10))
+                              margin=dict(l=140, r=15, t=46, b=10))
             st.plotly_chart(fig, use_container_width=True, theme=None)
 
 

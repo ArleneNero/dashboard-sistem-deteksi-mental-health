@@ -35,11 +35,99 @@ FONT_MONO    = "'JetBrains Mono', monospace"
 
 _CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-.stApp { background: linear-gradient(135deg, #FFFDF9 0%, #FFF4EE 40%, #EDF8F2 100%); color: @INK@; font-family: @BODY@; --buzzer: @OXBLOOD@; --urgent: @OXBLOOD@; --organic: @PINE@; --light: @PINE@; --ochre: @OCHRE@; --slate: @SLATE@; --accent: @PINE@; --muted: @MUTED@; --border: @HAIRLINE@; --surface2: @PAPER@; --text: @INK@; --text2: @INK@; --serif: @DISPLAY@; --body: @BODY@; --mono: @MONO@; }
-.block-container { padding-top: 1.6rem; padding-bottom: 4rem; max-width: 1120px; }
-h1,h2,h3,h4 { font-family: @DISPLAY@; color: @INK@; letter-spacing: -0.01em; }
+
+/* ===== FORCE LIGHT MODE — override Streamlit dark mode completely ===== */
+html, body {
+    background-color: #FFFDF9 !important;
+    color: @INK@ !important;
+    color-scheme: light !important;
+}
+.stApp, [data-testid="stApp"] {
+    background: linear-gradient(135deg, #FFFDF9 0%, #FFF4EE 40%, #EDF8F2 100%) !important;
+    color: @INK@ !important;
+    color-scheme: light !important;
+    font-family: @BODY@;
+    --buzzer: @OXBLOOD@; --urgent: @OXBLOOD@; --organic: @PINE@; --light: @PINE@;
+    --ochre: @OCHRE@; --slate: @SLATE@; --accent: @PINE@; --muted: @MUTED@;
+    --border: @HAIRLINE@; --surface2: @PAPER@; --text: @INK@; --text2: @INK@;
+    --serif: @DISPLAY@; --body: @BODY@; --mono: @MONO@;
+}
+[data-testid="stAppViewContainer"],
+[data-testid="stAppViewContainer"] > section,
+[data-testid="stAppViewContainer"] > section > div,
+.main, .main > div {
+    background-color: transparent !important;
+    color: @INK@ !important;
+}
+[data-testid="stHeader"], [data-testid="stToolbar"],
+[data-testid="stDecoration"], [data-testid="stStatusWidget"],
+[data-testid="stBottom"] {
+    background-color: transparent !important;
+    color: @INK@ !important;
+}
+[data-testid="stVerticalBlock"], [data-testid="stHorizontalBlock"],
+[data-testid="column"], [data-testid="stVerticalBlockBorderWrapper"],
+[data-testid="stElementContainer"] {
+    background-color: transparent !important;
+    color: @INK@ !important;
+}
+/* Plotly chart containers */
+div[data-testid="stPlotlyChart"],
+div[data-testid="stPlotlyChart"] > div,
+div[data-testid="stPlotlyChart"] > div > div,
+div[data-testid="stPlotlyChart"] iframe {
+    background-color: @PAPER@ !important;
+    color-scheme: light !important;
+}
+.js-plotly-plot, .plot-container, .svg-container,
+.main-svg, .js-plotly-plot .plotly {
+    background: @PAPER@ !important;
+}
+/* Selectbox, multiselect, input widgets */
+[data-testid="stMultiSelect"], [data-testid="stSelectbox"],
+[data-baseweb="select"], [data-baseweb="popover"],
+[data-baseweb="menu"], [data-baseweb="input"],
+[data-baseweb="select"] > div {
+    background-color: @SURFACE@ !important;
+    color: @INK@ !important;
+}
+[data-baseweb="menu"] li {
+    background-color: @SURFACE@ !important;
+    color: @INK@ !important;
+}
+[data-baseweb="menu"] li:hover {
+    background-color: @PAPER@ !important;
+}
+/* Radio, checkbox, slider */
+[data-testid="stRadio"] label, [data-testid="stCheckbox"] label,
+[data-testid="stSlider"] {
+    color: @INK@ !important;
+}
+/* Tabs */
+[data-testid="stTabs"], [data-testid="stTabContent"],
+div[role="tabpanel"] {
+    background-color: transparent !important;
+    color: @INK@ !important;
+}
+/* Markdown, caption, metric */
+[data-testid="stMarkdownContainer"], [data-testid="stCaptionContainer"],
+[data-testid="stMetric"], [data-testid="stMetricValue"] {
+    color: @INK@ !important;
+}
+/* Expander */
+[data-testid="stExpander"], [data-testid="stExpander"] details,
+[data-testid="stExpander"] summary {
+    background-color: @SURFACE@ !important;
+    color: @INK@ !important;
+}
+/* All text elements */
+h1,h2,h3,h4 { font-family: @DISPLAY@; color: @INK@ !important; letter-spacing: -0.01em; }
 h1 { font-weight: 900; }
-p,li,span,label,.stMarkdown { font-family: @BODY@; }
+p, li, span, label, .stMarkdown { font-family: @BODY@; color: @INK@ !important; }
+small { color: @MUTED@ !important; }
+/* ===== END FORCE LIGHT MODE ===== */
+
+.block-container { padding-top: 1.6rem; padding-bottom: 4rem; max-width: 1120px; }
 .eyebrow { font-family: @MONO@; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: @PINE@; font-weight: 700; }
 .sec-title { font-family: @DISPLAY@; font-size: 2.0rem; font-weight: 900; line-height: 1.05; margin: 0.1rem 0 0.2rem 0; }
 .sec-sub { color: @MUTED@; font-size: 1.02rem; max-width: 70ch; margin-bottom: 0.4rem; }
@@ -126,9 +214,9 @@ table.dt tr.avg td { background: @PAPER@; font-weight: 700; color: @INK@; }
 .lda-desc { font-size: 13px; color: @INK@; line-height: 1.5; }
 .lda-tris { margin-top: 12px; }
 
-div[data-testid="stExpander"] { background-color: @SURFACE@; border: 2px solid @HAIRLINE@; border-radius: 14px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); }
+div[data-testid="stExpander"] { background-color: @SURFACE@ !important; border: 2px solid @HAIRLINE@; border-radius: 14px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); }
 div[data-testid="stExpander"] details { border: none; }
-div[data-testid="stExpander"] summary { font-family: @DISPLAY@; color: @INK@; font-weight: 700; }
+div[data-testid="stExpander"] summary { font-family: @DISPLAY@; color: @INK@ !important; font-weight: 700; }
 
 /* Custom Popover Styling */
 div[data-testid="stPopover"] { width: 100%; }
@@ -168,7 +256,7 @@ div[data-testid="stPopoverBody"] {
 button[data-baseweb="tab"] { font-family: @DISPLAY@; color: @MUTED@ !important; font-size: 15px !important; font-weight: 600 !important; }
 button[data-baseweb="tab"][aria-selected="true"] { color: @PINE@ !important; border-bottom-color: @PINE@ !important; }
 
-section[data-testid="stSidebar"] { background: @SURFACE@; border-right: 2px solid @HAIRLINE@; }
+section[data-testid="stSidebar"] { background: @SURFACE@ !important; border-right: 2px solid @HAIRLINE@; }
 .demo-banner { background: #EBF2EE; border-left: 6px solid @OCHRE@; padding: 0.7rem 1rem; font-family: @MONO@; font-size: 0.82rem; color: @INK@; margin-bottom: 1rem; border-radius: 10px; }
 
 .masthead { background: linear-gradient(135deg, #1A4D33 0%, #358B61 50%, #4EA8DE 100%); color: #FFFFFF !important; padding: 2.2rem 2rem; border-radius: 24px; box-shadow: 0 12px 30px rgba(56, 176, 0, 0.15); margin-bottom: 2rem; border: none; }
@@ -177,7 +265,7 @@ section[data-testid="stSidebar"] { background: @SURFACE@; border-right: 2px soli
 
 #MainMenu, footer, header { visibility: hidden; }
 .step-flow { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin: 1.5rem 0; flex-wrap: wrap; }
-.flow-node { background: @SURFACE@; border: 2px solid @HAIRLINE@; border-radius: 16px; padding: 18px 20px; flex: 1; min-width: 220px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); border-top: 5px solid @SLATE@; }
+.flow-node { background: @SURFACE@ !important; border: 2px solid @HAIRLINE@; border-radius: 16px; padding: 18px 20px; flex: 1; min-width: 220px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); border-top: 5px solid @SLATE@; }
 .flow-node.step1 { border-top-color: @SLATE@; }
 .flow-node.step2 { border-top-color: @OCHRE@; }
 .flow-node.step3 { border-top-color: @OXBLOOD@; }
@@ -187,8 +275,6 @@ section[data-testid="stSidebar"] { background: @SURFACE@; border-right: 2px soli
     .step-flow { flex-direction: column; align-items: stretch; }
     .flow-arrow { transform: rotate(90deg); margin: 5px 0; }
 }
-div[data-testid="stPlotlyChart"] { background-color: transparent !important; }
-iframe[title="streamlit.plotly_chart"] { background-color: transparent !important; }
 """
 
 

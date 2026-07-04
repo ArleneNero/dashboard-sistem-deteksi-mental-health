@@ -212,7 +212,7 @@ def _register_template():
     t.layout = go.Layout(
         font=dict(family=FONT_BODY, size=13, color=INK),
         title=dict(font=dict(family=FONT_DISPLAY, size=17, color=INK), x=0, xanchor="left"),
-        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor=PAPER, plot_bgcolor=PAPER,
         colorway=CATEGORICAL,
         xaxis=dict(gridcolor=HAIRLINE, linecolor=INK, zeroline=False, ticks="outside",
                    tickfont=dict(family=FONT_MONO, size=11, color=MUTED)),
